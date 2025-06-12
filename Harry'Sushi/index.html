@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harry' Sushi</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #ff9595;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container, .custom-sushi {
+      padding: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(255, 171, 171, 0.473);
+      width: 280px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card img {
+      width: 100%;
+      border-radius: 6px;
+    }
+    .card h3 {
+      margin: 0.5rem 0;
+    }
+    .ingredients {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+    .ingredient {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.25rem 0;
+    }
+    .total, #cart-total {
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #e60023;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    button:hover {
+      background-color: #b3001b;
+    }
+    .cart-summary {
+      background: white;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 1rem;
+    }
+    .ingredient {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  .ingredient img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  .decor-banner {
+  width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.harry-bg {
+  background-image: url('img/harry-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+  color: rgb(0, 0, 0);
+  text-shadow: 1px 1px 4px black;
+  border-radius: 12px;
+  margin: 1rem;
+  
+}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Harry'Sushi</h1>
+</header>
+<!-- Banner decorativo -->
+<img src="Imagenes/Harry.jpg" alt="Harry Styles" class="decor-banner">
+
+<!-- Fondo decorativo en sección -->
+<div class="harry-bg">
+  <h2>¡Bienvenido al sushi más estiloso!</h2>
+  <p>Inspirado en el buen gusto de Harry Styles 🎵🍣</p>
+</div>
+<section class="container">
+  <div class="card">
+    <img src="Imagenes/Sushi1.jpg" alt="Sushi Clásico">
+    <h3>Sushi Clásico</h3>
+    <p>$120 MXN</p>
+    <button onclick="addToCart('Sushi Clásico', 120)">Agregar al carrito</button>
+  </div>
+  <div class="card">
+    <img src="Imagenes/Sushi2.jpg" alt="Sushi Especial">
+    <h3>Sushi Especial</h3>
+    <p>$150 MXN</p>
+    <button onclick="addToCart('Sushi Especial', 150)">Agregar al carrito</button>
+  </div>
+</section>
+
+<section class="custom-sushi">
+  <div class="card" style="width: 100%; max-width: 600px;">
+    <h2>Personaliza tu Sushi</h2>
+    <form id="customForm">
+  <div class="ingredients">
+    <!-- Cada ingrediente con imagen -->
+    <label class="ingredient">
+      <img src="Imagenes/Arroz.jpg" alt="Arroz">
+      <span>Arroz de sushi ($10)</span>
+      <input type="checkbox" value="10" data-name="Arroz">
+    </label>
+
+    <label class="ingredient">
+      <img src="Imagenes/salmon.jpg" alt="Salmón">
+      <span>Salmón fresco ($25)</span>
+      <input type="checkbox" value="25" data-name="Salmón fresco">
+    </label>
+
+    <label class="ingredient">
+      <img src="Imagenes/Aguacate.jpg" alt="Aguacate">
+      <span>Aguacate ($15)</span>
+      <input type="checkbox" value="15" data-name="Aguacate">
+    </label>
+
+    <label class="ingredient">
+      <img src="Imagenes/QuesoCrema.jpg" alt="Queso crema">
+      <span>Queso crema ($12)</span>
+      <input type="checkbox" value="12" data-name="Queso crema">
+    </label>
+
+    <label class="ingredient">
+      <img src="Imagenes/Alga.jpg" alt="Alga Nori">
+      <span>Alga Nori ($8)</span>
+      <input type="checkbox" value="8" data-name="Alga Nori">
+    </label>
+
+    <label class="ingredient">
+      <img src="Imagenes/Camaron.jpg" alt="Camarón">
+      <span>Camarón empanizado ($20)</span>
+      <input type="checkbox" value="20" data-name="Camarón empanizado">
+    </label>
+
+    <label class="ingredient">
+      <img src="Imagenes/Cangrejo.jpg" alt="Cangrejo">
+      <span>Imitación cangrejo ($18)</span>
+      <input type="checkbox" value="18" data-name="Cangrejo">
+    </label>
+
+    <label class="ingredient">
+      <img src="Imagenes/pepino.jpg" alt="Pepino">
+      <span>Pepino fresco ($10)</span>
+      <input type="checkbox" value="10" data-name="Pepino">
+    </label>
+
+    <label class="ingredient">
+      <img src="Imagenes/Cebollin.jpg" alt="Cebollín">
+      <span>Cebollín picado ($7)</span>
+      <input type="checkbox" value="7" data-name="Cebollín">
+    </label>
+
+    <label class="ingredient">
+      <img src="Imagenes/Chile.jpg" alt="Chile serrano">
+      <span>Chile serrano ($6)</span>
+      <input type="checkbox" value="6" data-name="Chile serrano">
+    </label>
+  </div>
+  <div class="total" id="total">Total: $0 MXN</div>
+  <button type="submit">Agregar al carrito</button>
+    </form>
+  </div>
+</section>
+
+<section class="cart-summary">
+  <h2>Resumen del carrito</h2>
+  <ul id="cart-items"></ul>
+  <div id="cart-total">Total: $0 MXN</div>
+  <input type="text" id="direccion" placeholder="Escribe tu dirección de envío aquí">
+  <button onclick="enviarWhatsApp()">Pagar por WhatsApp</button>
+</section>
+
+<script>
+  let cart = [];
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCartDisplay();
+  }
+
+  document.getElementById("customForm").addEventListener("change", () => {
+    const checkboxes = document.querySelectorAll("#customForm input[type='checkbox']");
+    let total = 0;
+    checkboxes.forEach(cb => {
+      if (cb.checked) total += parseFloat(cb.value);
+    });
+    document.getElementById("total").textContent = `Total: $${total} MXN`;
+  });
+
+  document.getElementById("customForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const selected = document.querySelectorAll("#customForm input[type='checkbox']:checked");
+    if (selected.length === 0) return alert("Selecciona al menos un ingrediente.");
+    let name = "Sushi personalizado con ";
+    let total = 0;
+    selected.forEach(cb => {
+      name += cb.dataset.name + ", ";
+      total += parseFloat(cb.value);
+    });
+    name = name.slice(0, -2); // quitar coma final
+    addToCart(name, total);
+    document.getElementById("customForm").reset();
+    document.getElementById("total").textContent = "Total: $0 MXN";
+  });
+
+  function updateCartDisplay() {
+    const list = document.getElementById("cart-items");
+    const totalDisplay = document.getElementById("cart-total");
+    list.innerHTML = "";
+    let total = 0;
+    cart.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} - $${item.price} MXN`;
+      list.appendChild(li);
+      total += item.price;
+    });
+    totalDisplay.textContent = `Total: $${total} MXN`;
+  }
+
+  function enviarWhatsApp() {
+    if (cart.length === 0) {
+      alert("El carrito está vacío.");
+      return;
+    }
+    const direccion = document.getElementById("direccion").value.trim();
+    if (!direccion) {
+      alert("Por favor, escribe tu dirección de envío.");
+      return;
+    }
+    let mensaje = "Hola! Quiero hacer un pedido:\n";
+    let total = 0;
+    cart.forEach(item => {
+      mensaje += `• ${item.name} - $${item.price} MXN\n`;
+      total += item.price;
+    });
+    mensaje += `\n🧾 Total: $${total} MXN\n📍 Dirección: ${direccion}`;
+    const telefono = "3314078705"; // <-- Tu número aquí
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, "_blank");
+  }
+</script>
+
+</body>
+</html>
